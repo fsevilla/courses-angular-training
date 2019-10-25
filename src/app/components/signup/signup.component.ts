@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidationErrors } from '@angular/forms';
+import { errorMessages } from './error-messages';
 
 @Component({
   selector: 'app-signup',
@@ -43,5 +44,4 @@ export class SignupComponent implements OnInit {
     }
 
   }
-
 }

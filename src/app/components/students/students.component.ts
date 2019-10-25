@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Student } from './student';
 
 @Component({
   selector: 'app-students',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StudentsComponent implements OnInit {
 
+  selectedStudent:Student = {name:'lorem'};
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  handleStudentSelect(event) {
+    console.log('handle select ', event);
+    this.selectedStudent = event;
   }
 
 }

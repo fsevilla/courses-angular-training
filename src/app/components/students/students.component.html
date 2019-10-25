@@ -1,2 +1,5 @@
 <h2>Lista de Estudiantes</h2>
-<router-outlet></router-outlet>
+<!-- <router-outlet></router-outlet> -->
+<app-students-list (onSelectedStudent)="handleStudentSelect($event)"></app-students-list>
+//////////
+<app-data-student [student]="selectedStudent"></app-data-student>

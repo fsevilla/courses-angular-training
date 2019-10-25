@@ -22,4 +22,17 @@ export class BaseHttpService {
       headers: httpHeaders
     });
   }
+
+  post(url, data): Observable<any> {
+    let token = this.sessionService.getSessionToken();
+    
+    let httpHeaders:HttpHeaders = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': token
+    });
+
+    return this.httpClient.post(url, data, {
+      headers: httpHeaders
+    });
+  }
 }

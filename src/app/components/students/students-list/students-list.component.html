@@ -1,5 +1,6 @@
 <div>
   <div *ngFor="let item of students">
-    <a [routerLink]="item.id">{{item.name}}</a>
+    <!-- <a [routerLink]="item.id">{{item.fullname}}</a> -->
+    <a (click)="selectStudent(item)">{{item.fullname}}</a>
   </div>
 </div>

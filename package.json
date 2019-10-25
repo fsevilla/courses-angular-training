@@ -7,7 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "webdriver-manager update --ignore_ssl --versions.gecko=v0.18.0 && ng e2e --no-webdriver-update"
   },
   "private": true,
   "dependencies": {

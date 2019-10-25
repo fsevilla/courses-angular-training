@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { StudentService } from './../student.service';
+import { Student } from './../student';
 
 @Component({
   selector: 'app-students-list',
@@ -8,7 +9,9 @@ import { StudentService } from './../student.service';
 })
 export class StudentsListComponent implements OnInit {
 
-  students:Array<any> = [];
+  students:Array<Student> = [];
+
+  @Output() onSelectedStudent = new EventEmitter<Student>();
 
   constructor(private studentService:StudentService) { }
 
@@ -17,11 +20,17 @@ export class StudentsListComponent implements OnInit {
   }
 
   getStudents() {
-    this.studentService.getStudents().then(response => {
+    this.studentService.get().then(response => {
       this.students = response;
+      console.log('response', response);
     }).catch(err => {
       console.error('No trajo datos', err);
     });
+  }
+
+  selectStudent(student:Student) {
+    console.log('Selected: ', student);
+    this.onSelectedStudent.emit(student);
   }
 
 }

@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
-
 import { environment } from './../../../environments/environment';
-import { BaseHttpService } from './../../shared/services/base-http.service';
+import { map } from 'rxjs/operators';
+import { AbcService } from './../../shared/services/abc.service';
+import { BaseHttpService } from 'src/app/shared/services/base-http.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class StudentService {
+export class StudentService extends AbcService {
 
-  constructor(
-    private baseHttp: BaseHttpService
-  ) { }
+  protected endpoint:string = 'users';
 
-  getStudents():Promise<any> {
-    const url = environment.dataApi + 'users';
-    return this.baseHttp.get(url).toPromise();;
+  protected transformData(data) {
+    data = data.map(item => {
+      item.fullname = item.name;
+      return item;
+    });
+
+    return data;
   }
 
   getStudentData(studentId:number):Promise<any> {
-    const url = environment.dataApi + 'users/' + studentId;
-    return this.baseHttp.get(url).toPromise();
+    return super.getElement('users', studentId);
   }
 }

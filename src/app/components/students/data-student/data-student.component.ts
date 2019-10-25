@@ -1,30 +1,33 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit, OnChanges } from '@angular/core';
 import { StudentService } from '../student.service';
 import { ActivatedRoute } from '@angular/router';
 
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { Student } from '../student';
 
 @Component({
   selector: 'app-data-student',
   templateUrl: './data-student.component.html',
   styleUrls: ['./data-student.component.scss']
 })
-export class DataStudentComponent implements OnInit {
+export class DataStudentComponent implements OnInit, AfterViewInit {
+
+  @Input() student:Student;
 
   studentId:number;
-  student:any = {};
+  // student:any = {};
   form:FormGroup;
   isChanged:boolean;
 
   constructor(private studentService:StudentService, private activatedRoute:ActivatedRoute) {
-    this.activatedRoute.params.subscribe(params => {
-      this.studentId = params.studentId;
-    });
+    // this.activatedRoute.params.subscribe(params => {
+    //   this.studentId = params.studentId;
+    // });
   }
 
   ngOnInit() {
     this.formInit();
-    this.getStudentData();    
+    // this.getStudentData();    
   }
 
   formInit() {
@@ -74,6 +77,15 @@ export class DataStudentComponent implements OnInit {
     console.log('Clicked: ', e);
     // e.preventDefault();
     // e.stopPropagation();
+  }
+
+  ngAfterViewInit() {
+    console.log('Student: ', this.student);
+  }
+
+  ngOnChanges() {
+    console.log('Algo cambio: ', this.student);
+    this.form.patchValue(this.student);
   }
 
 }
