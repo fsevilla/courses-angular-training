@@ -7,21 +7,29 @@ import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { NotFoundComponent } from './components/errors/not-found/not-found.component';
 import { AuthenticationModule } from './authentication/authentication.module';
-import { SignupComponent } from './signup/signup.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HeaderComponent } from './components/header/header.component';
+import { StudentsComponent } from './components/students/students.component';
+import { StudentsListComponent } from './components/students/students-list/students-list.component';
+import { DataStudentComponent } from './components/students/data-student/data-student.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     NotFoundComponent,
-    SignupComponent
+    HeaderComponent,
+    StudentsComponent,
+    StudentsListComponent,
+    DataStudentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthenticationModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,23 @@
+<form [formGroup]="form" (submit)="updateStudent()">
+  <div>
+    <input type="text" formControlName="name" placeholder="Nombre">
+  </div>
+  <div>
+    <input type="email" name="email" placeholder="Email">
+  </div>
+  <div>
+    <input type="text" name="username" placeholder="Username">
+  </div>
+  <div>
+    <input type="text" name="phone" placeholder="Telefono">
+  </div>
+  <div>
+    <input type="text" name="website" placeholder="URL website">
+  </div>
+  <div>
+    <button class="btn">Guardar</button>
+    <a class="btn" routerLink="..">Cancelar</a>
+    <a (click)="cancel()">Cancelar link</a>
+    <button (click)="cancel($event)">Cancelar con boton</button>
+  </div>
+</form>

@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://demo1076355.mockable.io/'
+  apiUrl: 'http://demo1076355.mockable.io/',
+  dataApi: 'https://jsonplaceholder.typicode.com/'
 };
 
 /*
