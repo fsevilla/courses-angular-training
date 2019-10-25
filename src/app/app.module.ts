@@ -12,6 +12,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { StudentsComponent } from './components/students/students.component';
 import { StudentsListComponent } from './components/students/students-list/students-list.component';
 import { DataStudentComponent } from './components/students/data-student/data-student.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { DataStudentComponent } from './components/students/data-student/data-st
     HeaderComponent,
     StudentsComponent,
     StudentsListComponent,
-    DataStudentComponent
+    DataStudentComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

@@ -7,6 +7,7 @@ import { UnauthGuard } from './authentication/guards/unauth.guard';
 import { StudentsComponent } from './components/students/students.component';
 import { DataStudentComponent } from './components/students/data-student/data-student.component';
 import { StudentsListComponent } from './components/students/students-list/students-list.component';
+import { SignupComponent } from './components/signup/signup.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: ':studentId', component: DataStudentComponent }
     ]
   },
+  { path: 'signup', component: SignupComponent },
   { path: '**', component: NotFoundComponent }
 ];
 

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { StudentService } from '../student.service';
 import { ActivatedRoute } from '@angular/router';
 
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-data-student',
@@ -14,6 +14,7 @@ export class DataStudentComponent implements OnInit {
   studentId:number;
   student:any = {};
   form:FormGroup;
+  isChanged:boolean;
 
   constructor(private studentService:StudentService, private activatedRoute:ActivatedRoute) {
     this.activatedRoute.params.subscribe(params => {
@@ -28,21 +29,45 @@ export class DataStudentComponent implements OnInit {
 
   formInit() {
     this.form = new FormGroup({
-      name: new FormControl('')
+      name: new FormControl('', Validators.required),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      username: new FormControl('', Validators.required),
+      phone: new FormControl('', Validators.required),
+      website: new FormControl('', Validators.required)
     });
+
+    this.isFormUpdated();
   }
 
   getStudentData() {
     this.studentService.getStudentData(this.studentId).then(response => {
       this.student = response;
       this.form.patchValue(this.student);
+      this.isChanged = false;
     }).catch(error => {
       console.error('Fallo al traer datos del estudiante');
     });
   }
 
   updateStudent() {
-    console.log('Student: ', this.student);
+    if(this.form.valid) {
+      const data = this.form.getRawValue();
+      console.log('enviar los datos', data, this.student);
+    } else {
+      console.log('arreglalo primero');
+    }
+    console.log('Student: ', this.form);
+  }
+
+  isFormUpdated() {
+    this.form.valueChanges.subscribe(changes => {
+      console.log('Changes', changes);
+      this.isChanged = true;
+    });
+  }
+
+  clean() {
+    this.form.patchValue(this.student);
   }
 
   cancel(e) {
