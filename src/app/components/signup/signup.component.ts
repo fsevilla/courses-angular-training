@@ -24,7 +24,11 @@ export class SignupComponent implements OnInit {
   }
 
   signup() {
-    this.matchPasswords();
+    if(this.form.valid) {
+      console.log('enviar datos');
+    } else {
+      console.log('algo falta');
+    }
   }
 
   matchPasswords():ValidationErrors | null {
